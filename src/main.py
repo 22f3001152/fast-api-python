@@ -8,10 +8,17 @@ from fastapi.concurrency import iterate_in_threadpool
 from src.configs.database.database import engine
 from src.configs.logging.error_handlers import log_error, log_request
 from src.configs.logging.log_config import LOGGING_CONFIG
+from src.configs.settings import get_settings
 from src.posts import models
 from src.posts.router import ItemsAPI
 
-app = FastAPI()
+settings = get_settings()
+
+app = FastAPI(
+    title=settings.app_name,
+    description=settings.app_description,
+    version=settings.app_version,
+)
 models.Base.metadata.create_all(bind=engine)
 logging.config.dictConfig(LOGGING_CONFIG)
 

@@ -6,6 +6,15 @@ env = os.environ.get("ENVIRONMENT", "development").lower()
 
 
 class Settings(BaseSettings):
+    """
+    Base settings class for the application.
+    This class uses Pydantic's BaseSettings to load environment variables
+    and provides default values for the settings.
+    """
+
+    app_name: str = "MyApp"
+    app_version: str = "1.0.0"
+    app_description: str = "My application description"
     environment: str = "development"
     debug: bool = True
     db_uri: str
