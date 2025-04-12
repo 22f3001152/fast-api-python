@@ -3,7 +3,7 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 
 from alembic import context
-from src.configs.database import SQLALCHEMY_DATABASE_URL
+from src.configs.database.database import SQLALCHEMY_DATABASE_URL
 from src.posts.models import Base
 
 # this is the Alembic Config object, which provides

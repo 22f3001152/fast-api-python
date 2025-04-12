@@ -54,7 +54,7 @@ class ErrorLog(BaseModel):
     error_message: str
 
 
-logger = logging.getLogger("my_customer_logger")
+logger = logging.getLogger("fastapi-logger")
 
 
 def log_request(request: Request):
