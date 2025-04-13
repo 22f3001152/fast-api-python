@@ -19,7 +19,13 @@ app = FastAPI(
     description=settings.app_description,
     version=settings.app_version,
 )
-models.Base.metadata.create_all(bind=engine)
+
+try:
+    models.Base.metadata.create_all(bind=engine)
+except Exception as e:
+    logging.error(f"Error initializing database: {e}")
+    raise
+
 logging.config.dictConfig(LOGGING_CONFIG)
 
 

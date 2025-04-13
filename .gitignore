@@ -175,3 +175,4 @@ cython_debug/
 **/data
 .idea
 .env.dev
+test.db
