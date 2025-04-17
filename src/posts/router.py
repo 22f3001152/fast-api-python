@@ -24,6 +24,16 @@ class ItemsAPI(Routable):
         items = self.db.query(models.Item).all()
         return items
 
+    @get("/items/{id}")
+    async def read_item_by_id(self, id: str) -> schemas.Item:
+        """
+        Get all Items
+        """
+        item = self.db.query(models.Item).filter(models.Item.id == id).first()
+        if not item:
+            raise HTTPException(status_code=404, detail="Item not found")
+        return item
+
     @put("/items/{item_id}")
     async def update_item(self, item_id: int, data: schemas.ItemUpdate) -> schemas.Item:
         """
@@ -51,7 +61,7 @@ class ItemsAPI(Routable):
         self.db.commit()
         self.db.refresh(item)
 
-        return item
+        return item, 201
 
     @delete("/items/{item_id}")
     async def delete_item(self, item_id: int) -> None:

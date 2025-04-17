@@ -1,5 +1,6 @@
 import json
 import logging
+import logging.config
 import uuid
 
 from fastapi import FastAPI, HTTPException, Request
